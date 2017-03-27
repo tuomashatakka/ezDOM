@@ -90,6 +90,8 @@ document
 
 Add or remove class(es) for/from the calling element
 
+Shortcut setter for addClass `element.class = <className>`
+
 ```javascript
 const el = document.querySelector('div')
 const log = () => console.log(el.getAttribute('class'))

@@ -36,11 +36,11 @@ function addProperty (name, getter, setter) {
 
   HTMLElement.prototype.__defineGetter__(name,
     function () {
-    getter.call(this) })
+    this.call(this) })
 
   HTMLElement.prototype.__defineSetter__(name,
     function (value) {
-    setter.call(this, value) })
+    this.call(this, value) })
 }
 
 // Calling this function applies
@@ -68,7 +68,6 @@ export default function extendHTMLElement (options: OptionsType = {}) {
     'class',
     ()    => cls.getClassList(),
     (val) => cls.toggleClass(val))
-
 
   for (let module of methods) {
     for (let id of module.properties) {
