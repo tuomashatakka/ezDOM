@@ -5,11 +5,12 @@ export const properties = [
   'toggleClass',
   'addClass',
   'removeClass',
+  'hasClass',
   'hasClasses',
   'getClassList' ]
 
-export function getClassList (): HTMLElement {
-  return this.classList || (this.getAttribute('class') || '').split(/\s/)
+export function getClassList (): Array<string> | DOMStringMap {
+  return this.classList || (this.getAttribute('class') || '').split(/\s/) || []
 }
 
 export function toggleClass (...cls: Array<string>): HTMLElement {
@@ -28,8 +29,15 @@ export function removeClass (...value: Array<string>) {
   return this
 }
 
+export function hasClass (value: string) {
+  return hasClasses.call(this, value)
+}
+
 export function hasClasses (...value: Array<string>) {
-  return getClassList.call(this).reduce((bo, current) => bo && current, true)
+  let classList = [...getClassList.call(this)]
+  let has = value.reduce((res, current) =>
+    res && classList.indexOf(current) > -1, true)
+  return has
 }
 
 export function toggleItems (list: Array<string>, ...items: Array<string>) {

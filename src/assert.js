@@ -12,7 +12,6 @@ export const isHTMLTag = (o) =>
 
 export function assertElement (el: HTMLElement | string) {
 
-  console.log(arguments, arguments.caller)
   el = this !== window && this !== assertElement
     ? this : el
 
