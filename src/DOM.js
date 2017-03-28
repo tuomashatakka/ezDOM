@@ -2,6 +2,8 @@
 // @flow
 import { assertElement, isElement, isNumber, isHTMLTag } from './assert'
 
+export const properties = ['append', 'prepend', 'insert']
+
 type ElementType = HTMLElement | null;
 type InsertPositionType = 'first' | 'last' | number | ElementType;
 
@@ -117,6 +119,3 @@ export function insertChild (parent: HTMLElement, el: HTMLElement, index: Insert
 
   return parent.insertBefore(el, index)
 }
-
-
-export const properties = ['append', 'prepend', 'insert']

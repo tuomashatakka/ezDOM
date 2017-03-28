@@ -3,6 +3,7 @@
 
 import * as cls from './className'
 import * as dom from './DOM'
+import * as anim from './transitions'
 import { toObject } from './utils'
 
 type OptionsType = {
@@ -24,6 +25,11 @@ export const methods = [
     name: 'dom',
     methods: { ...dom },
     properties: dom.properties,
+  },
+  {
+    name: 'anim',
+    methods: { ...anim },
+    properties: anim.properties,
   },
   {
     name: 'className',
@@ -72,9 +78,12 @@ export default function extendHTMLElement (options: OptionsType = {}) {
   for (let module of methods) {
     for (let id of module.properties) {
 
+      let method = function (...args) {
+        return module.methods[id].call(this, ...args)
+      }
       // if (!namespace)
       if(overwrite || !HTMLElement.prototype[id])
-        HTMLElement.prototype[id] = module.methods[id]
+        HTMLElement.prototype[id] = method
 
       // TODO: Namespace .apply delegation
       // else
