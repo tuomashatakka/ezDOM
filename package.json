@@ -1,0 +1,9 @@
+{
+  "name": "ez-dom",
+  "version": "0.0.1",
+  "author": "tuomashatakka",
+  "description": "lightweight DOM interaction",
+  "repository": "https://github.com/tuomashatakka/ezDOM",
+  "license": "MIT",
+  "dependencies": {}
+}
