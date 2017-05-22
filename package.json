@@ -1,78 +1,9 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "ez-dom@git://github.com/tuomashatakka/ezDOM.git",
-        "scope": null,
-        "escapedName": "ez-dom",
-        "name": "ez-dom",
-        "rawSpec": "git://github.com/tuomashatakka/ezDOM.git",
-        "spec": "git://github.com/tuomashatakka/ezDOM.git",
-        "type": "hosted",
-        "hosted": {
-          "type": "github",
-          "ssh": "git@github.com:tuomashatakka/ezDOM.git",
-          "sshUrl": "git+ssh://git@github.com/tuomashatakka/ezDOM.git",
-          "httpsUrl": "git+https://github.com/tuomashatakka/ezDOM.git",
-          "gitUrl": "git://github.com/tuomashatakka/ezDOM.git",
-          "shortcut": "github:tuomashatakka/ezDOM",
-          "directUrl": "https://raw.githubusercontent.com/tuomashatakka/ezDOM/master/package.json"
-        }
-      },
-      "/Users/tuomas/Projects/Atom/panel-boss"
-    ]
-  ],
-  "_from": "git://github.com/tuomashatakka/ezDOM.git",
-  "_id": "ez-dom@0.0.1",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/ez-dom",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "ez-dom@git://github.com/tuomashatakka/ezDOM.git",
-    "scope": null,
-    "escapedName": "ez-dom",
-    "name": "ez-dom",
-    "rawSpec": "git://github.com/tuomashatakka/ezDOM.git",
-    "spec": "git://github.com/tuomashatakka/ezDOM.git",
-    "type": "hosted",
-    "hosted": {
-      "type": "github",
-      "ssh": "git@github.com:tuomashatakka/ezDOM.git",
-      "sshUrl": "git+ssh://git@github.com/tuomashatakka/ezDOM.git",
-      "httpsUrl": "git+https://github.com/tuomashatakka/ezDOM.git",
-      "gitUrl": "git://github.com/tuomashatakka/ezDOM.git",
-      "shortcut": "github:tuomashatakka/ezDOM",
-      "directUrl": "https://raw.githubusercontent.com/tuomashatakka/ezDOM/master/package.json"
-    }
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "git://github.com/tuomashatakka/ezDOM.git#193cdf934c79b6d641a9113b6f0b2d8d3f7d7aa2",
-  "_shasum": "3c457c86a25898b973328836b933853ea3899303",
-  "_shrinkwrap": null,
-  "_spec": "ez-dom@git://github.com/tuomashatakka/ezDOM.git",
-  "_where": "/Users/tuomas/Projects/Atom/panel-boss",
-  "author": {
-    "name": "tuomashatakka"
-  },
-  "bugs": {
-    "url": "https://github.com/tuomashatakka/ezDOM/issues"
-  },
-  "dependencies": {},
-  "description": "lightweight DOM interaction",
-  "devDependencies": {},
-  "gitHead": "193cdf934c79b6d641a9113b6f0b2d8d3f7d7aa2",
-  "homepage": "https://github.com/tuomashatakka/ezDOM#readme",
-  "license": "MIT",
   "name": "ez-dom",
-  "optionalDependencies": {},
-  "readme": "# ezDOM\nLightweight JS library that extends the DOM elements with few utility methods\n\n## Usage\n\n```javascript\nimport workTheMagic from 'ezDOM'\n\nvar options = {}\n\nworkTheMagic(options)\n```\n\nAfter that you may use the package's functionality to unlimited extent\n\n```javascript\n\n(function doShowExample (element) {\n\n// Append a div element\nvar createdElement = element.append('div');\n\n// Add a class for the created element\ncreatedElement.class = 'nice';\n\n// Classes may also be added by addClass & toggleClass methods:\ncreatedElement.toggleClass('nice');\n\n// To get the class list, call the .class getter\nvar clsList = createdElement.class; // returns []\n\n})(document.body)\n```\n\n\n## Features\n\n\n\n### HTMLElement extensions\n\n| HTMLElement.prototype.          | Description\n|---------------------------------|----------------------------\n| `append`  | Appends the given element to calling element as a last child\n| `prepend` | Prepends the given element to calling element as a first child\n| `insert`  | Inserts the given element as the n:th child to the calling element\n| `addClass`  | Adds the given class to the caller's class list (for each parameter provided).\n| `removeClass`  | Removes the given classes from the caller's class list (for each parameter provided).\n| `toggleClass`  | Removes the given class from the caller's class list if the element has the provided class. If the element does not have the given class, adds the class for the element.\n\n\n#### .append & .prepend\n\n**Signature** `function append (el: HTMLElement | string): HTMLElement | null`\n\nAppend an element as a `:last-child` for the calling element\n\n```javascript\ndocument\n  .querySelector('div')\n  .append('div')\n\ndocument\n  .querySelector('div')\n  .prepend('div')\n```\n\n#### .insert\n\n**Signature** `function insert (el: HTMLElement | string, index?: HTMLElement | number | 'first'): HTMLElement | null`\n\nInsert the `el` element as a `:nth-element(index)` for the calling element.\n\nIf the index provided is of type element, el is inserted just before it (assuming the index is a child of the caller - otherwise throws an error). The index argument also accepts keywords 'first' and 'last'. If omitted, the element is inserted as a last child.\n\n```javascript\nlet el = document\n  .querySelector('div')\n\nel.insert('span')\n\ndocument\n  .querySelector('div')\n  .prepend('div')\n```\n\n#### .addClass, .removeClass, .toggleClass\n\n**Signature** `function addClass (...classNames): DOM`\n\nAdd or remove class(es) for/from the calling element\n\nShortcut setter for addClass `element.class = <className>`\n\n```javascript\nconst el = document.querySelector('div')\nconst log = () => console.log(el.getAttribute('class'))\n\n// Adds classes 'emphasized-text' and 'lol' for the el\n// Outputs 'emphasized-text 'lol'\nel.addClass('emphasized-text', 'lol')\nlog()\n\n// Removes the 'emphasized-text' class from el\n// Outputs 'lol'\nel.removeClass('emphasized-text')\nlog()\n\n// Removes the 'lol' class from el and adds the 'derp-a-derpy' class\n// Outputs 'derp-a-derpy'\nel.toggleClass('derp-a-derpy', 'lol')\nlog()\n```\n",
-  "readmeFilename": "README.md",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tuomashatakka/ezDOM.git"
-  },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "author": "tuomashatakka",
+  "description": "lightweight DOM interaction",
+  "repository": "https://github.com/tuomashatakka/ezDOM",
+  "license": "MIT",
+  "dependencies": {}
 }
