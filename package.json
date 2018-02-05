@@ -5,5 +5,63 @@
   "description": "lightweight DOM interaction",
   "repository": "https://github.com/tuomashatakka/ezDOM",
   "license": "MIT",
-  "dependencies": {}
+  "main": "dist/index.js",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "flowtype": "^2.0.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-object-assign",
+      "transform-runtime",
+      "transform-flow-strip-types",
+      "transform-es2015-modules-umd"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "globals": {
+      "atom": true,
+      "Promise": true,
+      "module": true,
+      "process": true,
+      "emit": true,
+      "require": true,
+      "document": true,
+      "window": true,
+      "jQuery": true,
+      "__dirname": true,
+      "__pathname": true
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:flowtype/recommended"
+    ],
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0"
+  }
 }

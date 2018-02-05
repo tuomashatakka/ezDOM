@@ -1,5 +1,5 @@
-'use babel'
 // @flow
+'use babel'
 
 import * as cls from './className'
 import * as dom from './DOM'
@@ -7,7 +7,7 @@ import * as anim from './transitions'
 import { toObject } from './utils'
 
 type OptionsType = {
-  namespace?: 'string' | void,
+  namespace?: 'string' | void
 };
 
 export const defaults = {
